@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Facture PDF!{% endblock %}</title>
+        {% block stylesheets %}
+        {# href="{{ absolute_url(asset('build/app.css'))[1:] }}" #}
+        <link rel="stylesheet" href="{{ asset('build/app.css')[1:] }}">
+        <link rel="stylesheet" href="{{ asset('build/pdf.css')[1:] }}">
+        {% endblock %}
+    </head>
+
+    <body id="body-pdf">
+        {% block body %}
+
+        {# layout for PDF files #}
+        <!-- global container -->
+        <div class="px-3">
+
+            <!-- header with logo only -->
+            <header>
+                <div class="py-0 text-center">
+                    {# uncomment the line ;extension=gd2 in the php.in file #}
+                    <img class="" src="{{ asset('build/images/logo.png')[1:] }}" height="100"
+                        alt="Aucune Commission Logo">
+                </div>
+            </header>
+            <!-- /header with logo only -->
+
+            <!-- titre de la page du pdf -->
+            <div class="my-5 text-center">
+                <h1 class="font-weight-bold text-uppercase">{{ title }}</h1>
+            </div>
+            <!-- /titre de la page du pdf -->
+
+            <!-- informations et reference de la commande -->
+            <table class="mb-5">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <!-- informations & references de la facture -->
+                        <td class="td-vertical-align" width="40%">
+                            <div class="border border-dark rounded">
+                                <div class="bg-dark text-white rounded px-1 font-weight-bold">Informations commande
+                                </div>
+                                <div class="text-dark">
+                                    <p class="px-1 my-0">Numéro de facture: {{ facture.id }}</p>
+                                    <p class="px-1 my-0">Numéro client: {{ facture.clientid }}</p>
+                                    <p class="px-1 my-0">Adresse IP du paiement: {{ facture.clientAdresseIp }}</p>
+                                    <p class="px-1 my-0">Date de la facture:
+                                        {{ facture.factureCreateAt | date('d:m:Y') }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- /informations & references de la facture -->
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /informations et reference de la commande -->
+
+            <!-- customer details area -->
+            <table>
+                <tbody>
+                    <tr>
+                        <!-- adresse de livraison -->
+                        <td class="td-vertical-align">
+                            <div class="border border-info rounded">
+                                <div class="bg-primary text-white rounded px-1 font-weight-bold">Client livré</div>
+                                <div class="text-dark">
+                                    <p class="px-1 my-0">Prénom Nom du client</p>
+                                    <p class="px-1 my-0">Adresse du client</p>
+                                    <p class="px-1 my-0">Code postal et ville du client</p>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- /adresse de livraison -->
+
+                        <td width="30%"></td>
+
+                        <!-- adresse de facturation -->
+                        <td class="td-vertical-align">
+                            <div class="border border-info rounded">
+                                <div class="bg-primary text-white rounded px-1 font-weight-bold">Client facturé</div>
+                                <div class="text-dark">
+                                    <p class="px-1 my-0">Prénom Nom du client</p>
+                                    <p class="px-1 my-0">Adresse du client</p>
+                                    <p class="px-1 my-0">Code postal et ville du client</p>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- /adresse de facturation -->
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /customer details area -->
+
+            <br>
+
+            <!-- main table -->
+            <table class="table-striped mb-5">
+                <tbody>
+                    <thead>
+                        <!-- ligne de l entete du tableau -->
+                        <tr>
+                            <!-- description de la commande -->
+                            <th class="td-vertical-align" width="80%">
+                                <div class="bg-danger text-white rounded p-1 font-weight-bold">Description</div>
+                            </th>
+                            <!-- /description de la commande -->
+
+                            <!-- montant de la facture -->
+                            <th class="td-vertical-align text-right" width="20%">
+                                <div class="bg-dark text-white rounded p-1 font-weight-bold">
+                                    {{ ((1 + facture.montantTva) * facture.montantHt) | number_format(2) }} €</div>
+                            </th>
+                            <!-- /montant de la facture -->
+                        </tr>
+                        <!-- /ligne de l entete du tableau -->
+                    </thead>
+
+                    <!-- ligne de concernant 1 article -->
+                    {# si plusieurs articles boucle pour pour remplir la table #}
+                    <tr>
+                        <td class="td-vertical-align">
+                            <p class="p-1">Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Voluptatum corrupti, velit dignissimos ut aut delectus doloremque
+                                dolores
+                                voluptates in atque eum reiciendis vero iusto et praesentium eaque dolor ducimus
+                                optio.</p>
+                        </td>
+                        <td class="td-vertical-align text-right">
+                            <p class="p-1">{{ facture.montantHt | number_format(2)}} €</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-vertical-align">
+                            <p class="p-1">oc tu nunc in illo probas. Qua tu etiam inprudens utebare non numquam.</p>
+                        </td>
+                        <td class="td-vertical-align text-right">
+                            <p class="p-1">0 €</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-vertical-align">
+                            <p class="p-1">Nos cum te, M. Quid sequatur, quid repugnet, vident.</p>
+                        </td>
+                        <td class="td-vertical-align text-right">
+                            <p class="p-1">0 €</p>
+                        </td>
+                    </tr>
+                    {# /si plusieurs articles boucle pour pour remplir la table #}
+                    <!-- /ligne de concernant 1 article -->
+                </tbody>
+
+                <!-- TVA, TTC -->
+                <tfoot>
+                    <tr>
+                        <td class="text-right tfoot-border-bottom">
+                            TOTAL HT
+                        </td>
+                        <td class="text-right table-warning tfoot-border-bottom">
+                            {{ facture.montantHt | number_format(2) }} €
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right tfoot-border-bottom">
+                            TVA à {{ facture.montantTva * 100 }} %
+                        </td>
+                        <td class="text-right table-warning tfoot-border-bottom">
+                            {{ (facture.montantTva * facture.montantHt) | number_format(2) }} €
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right tfoot-border-bottom">
+                            <strong>TOTAL TTC À PAYER</strong>
+                        </td>
+                        <td class="text-right table-warning tfoot-border-bottom">
+                            <strong>{{ ((1 + facture.montantTva) * facture.montantHt) | number_format(2) }} €</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">
+                            <em>Moyens de paiement</em>
+                        </td>
+                        <td class="text-center table-warning">
+                            <em>Comptant</em>
+                        </td>
+                    </tr>
+                </tfoot>
+                <!-- /TVA, TTC -->
+            </table>
+            <!-- main table -->
+
+            <!-- informations commerciales -->
+            <table class="mb-5">
+                <tbody>
+                    <tr>
+                        <!-- contact & horaires -->
+                        <td class="td-vertical-align" width="40%">
+                            <div class="border border-dark rounded">
+                                <div class="bg-dark text-white rounded px-1 font-weight-bold">Contact
+                                </div>
+                                <div class="text-center">
+                                    <p class="px-1 my-0"><a href="https://google.fr">Sevice client</a></p>
+                                    <p class="px-1 my-0">Du lundi au vendredi de 10h à 15h</p>
+                                    <p class="px-1 my-0"><strong>09 75 18 04 34</strong></p>
+                                    <p class="px-1 my-0">info@aucunecommission.com</p>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- /contact & horaires -->
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- informations commerciales -->
+
+            <!-- global container -->
+
+            {% endblock %}
+
+            <!-- conteneur fixe-->
+            {% block javascripts %}
+            <script src="{{ asset('/build/app.js')[1:] }}"></script>
+            {% endblock %}
+    </body>
+
+</html>

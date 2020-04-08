@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page des factures{% endblock %}
+
+{% block body %}
+<!-- conteneur de la page de gestion des factures-->
+<div class="container mt-4" id="content-wrap">
+    <!-- titre de la page de l affichage des factures -->
+    <div class="py-5 text-center">
+        <h1 class="display-4 font-weight-bold text-uppercase">{{ title }}</h1>
+    </div>
+    <!-- /titre de la page de l affichage des factures -->
+    <br>
+    <!-- bouton pour creer une facture -->
+    <div class="mb-3">
+        <a class="btn btn-primary btn-lg btn-block" href="{{ path('app_create_facture') }}">Créer une facture</a>
+    </div>
+    <!-- /bouton pour creer une facture -->
+
+    <!-- si au moins un enregistrement dans la table facture -->
+    {% if factureList %}
+    <!-- creation d un tableau avec la liste des factures -->
+    <table class="table table-striped">
+        <!-- entete du tableau -->
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Identifiant Client</th>
+                <th scope="col">Adresse IP</th>
+                <th scope="col">Date de la facture</th>
+                <th class="text-center" scope="col">Action</th>
+            </tr>
+        </thead>
+        <!-- /entete du tableau -->
+
+        <!-- informations concernant les factures -->
+        <tbody>
+            <!-- boucle dans le tableau des factures passe en parametre-->
+            {% for facture in factureList %}
+            <tr>
+                <td scope="row"> {{ facture.clientid }}</td>
+                <td>{{ facture.clientadresseip }}</td>
+                <td>{{ facture.facturecreateAt | date('d:m:Y') }}</td>
+                <td>
+                    <a class="btn btn-success btn-sm btn-block" href="{{ path('app_facture_pdf', {id: facture.id}) }}"
+                        target="_blank">Générer le PDF</a>
+                </td>
+            </tr>
+            {% endfor %}
+            <!-- /boucle dans le tableau des factures passe en parametre-->
+        </tbody>
+        <!-- /informations concernant les factures -->
+
+    </table>
+    <!-- /creation d un tableau avec la liste des factures -->
+
+    <!-- sinon affiche un message -->
+    {% else %}
+    <p>Il n'y a aucune facture pour le moment</p>
+    {% endif %}
+</div>
+<!-- /conteneur de la page de gestion des factures-->
+{% endblock %}

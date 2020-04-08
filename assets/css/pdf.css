@@ -1,0 +1,39 @@
+/* 
+    Created on : 05 avril 2020
+    Author     : Franck J.
+*/
+/*---------------------------------------------
+            CSS for the DomPDF layout
+----------------------------------------------*/
+
+/*----------- main components --------*/
+html,
+body {
+    height: 100%;
+    width: 100%;
+    padding-top: 0%;
+}
+
+p {
+    font-size: x-small !important;
+}
+
+/*----------- table components --------*/
+
+table {
+    width: 100%;
+}
+
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+.td-vertical-align {
+    vertical-align: top;
+}
+
+.tfoot-border-bottom {
+    border-bottom: 1px solid #fff
+}

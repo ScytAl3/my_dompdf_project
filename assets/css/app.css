@@ -1,0 +1,24 @@
+body {
+    background-color: floralwhite !important;
+    color: #312f31 !important;
+    /*-- pour demarrer sous la navbar fixe --*/
+    padding-top: 7em;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    /* Footer height */
+    padding-bottom: 2.5rem;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Footer height */
+    height: 2.5rem;
+}

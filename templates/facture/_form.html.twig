@@ -1,0 +1,58 @@
+<!-- elements du formulaire -->
+{{ form_start(form) }}
+
+<!-- debut des champs pour la saisie -->
+<div class="col-md-12 px-0">
+
+    <!-- numero identifiant du client -->
+    <div class="mb-4">
+        {{ form_label(form.client_id, 'N° identifiant du client') }}
+        {{ form_widget(form.client_id, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <!-- /numero identifiant du client -->
+
+    <!-- adresse IP du client -->
+    <div class="mb-4">
+        {{ form_label(form.client_adresse_ip, 'Adresse IP du paiement') }}
+        {{ form_widget(form.client_adresse_ip, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <!-- /adresse IP du client -->
+
+    <!-- montant hors-taxe de la facture -->
+    <div class="mb-4">
+        {{ form_label(form.montant_ht, 'Montant Hors-Taxe') }}
+        {{ form_widget(form.montant_ht, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <!-- /montant hors-taxe de la facture -->
+
+    <!-- montant de la TVA -->
+    <div class="mb-4">
+        {{ form_label(form.montant_tva, 'Montant de la TVA') }}
+        {{ form_widget(form.montant_tva, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <!-- /montant de la TVA -->
+
+    <!-- date de la facture -->
+    <div class="mb-4">
+        {{ form_label(form.facture_createAt, 'Date du paiement') }}
+        {{ form_widget(form.facture_createAt, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <!-- /date de la facture -->
+
+</div>
+<!-- /debut des champs pour la saisie -->
+
+<!-- bouton de validation du formulaire-->
+<button class="btn btn-primary">{{ save_button | default('Save') }}</button>
+<!-- /bouton de validation du formulaire-->
+
+{{ form_end(form) }}
+<!-- /elements du formulaire -->
+
+<div class="d-flex">
+    <!-- bouton pour revenir a la page precedente -->
+    <div class="ml-auto">
+        <button class="btn btn-info" onclick="history.back(-1)">&laquo; {{ back_button | default('Back') }}</button>
+    </div>
+    <!-- /bouton pour revenir a la page precedente -->
+</div>
