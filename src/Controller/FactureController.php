@@ -88,7 +88,7 @@ class FactureController extends AbstractController
         $dompdf = new Dompdf($pdfOptions);
 
         // retrieve the HTML generated in the twig file
-        $html = '<link rel="stylesheet" href="{{ asset(\'build/app.css\') }}">' . $this->renderView('facture/pdf.html.twig', [
+        $html = $this->renderView('facture/pdf.html.twig', [
             'title' => "Facture au format PDF",
             'facture' => $facture
         ]);
@@ -98,7 +98,7 @@ class FactureController extends AbstractController
         //
         //dd($dompdf);
         //
-        
+
         // (Optional) setup the paper size and orientation 'portrait' or 'portrait'
         $dompdf->setPaper('A4', 'portrait');
 
