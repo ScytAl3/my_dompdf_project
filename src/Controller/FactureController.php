@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-// Include Dompdf required namespaces
-use Dompdf\Dompdf;
-use Dompdf\Options;
 
 use App\Entity\Facture;
 use App\Form\FactureType;
 use App\Repository\FactureRepository;
+use App\Service\Facture\FactureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,7 +46,7 @@ class FactureController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function createFacture(Request $request)
+    public function createFacture(Request $request): Response
     {
         // instanciation d un nouvel objet Facture
         $facture = new Facture;
@@ -72,54 +70,13 @@ class FactureController extends AbstractController
 
     /**
      * @Route("/facture_pdf/{id}", name="app_facture_pdf", methods={"GET"})
+     * 
+     * @param FactureService    le service associe a la gestion des factures
+     * @param Integer   le numero identifiant de la facture selectionnee
      */
-    public function generatePdf(Facture $facture): Response
+    public function generatePdf(FactureService $factureService, int $id)
     {
-        //
-        //dd($facture);
-        //
-        // configure Dompdf according to the needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-        $pdfOptions->setIsHtml5ParserEnabled(true);
-        $pdfOptions->setDpi(150);
-
-        // instantiate Dompdf with the options
-        $dompdf = new Dompdf($pdfOptions);
-
-        // retrieve the HTML generated in the twig file
-        $html = $this->renderView('facture/pdf.html.twig', [
-            'title' => "Facture au format PDF",
-            'facture' => $facture
-        ]);
-
-        // load HTML to Dompdf
-        $dompdf->loadHtml($html);
-        //
-        //dd($dompdf);
-        //
-
-        // (Optional) setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
-
-        // render the HTML as PDF
-        $dompdf->render();
-
-        // store PDF Binary Data
-        $output = $dompdf->output();
-
-        //  write the file in the public directory set in config/services.yaml
-        $publicDirectory = $this->getParameter('factures_directory');
-        // concatenate the name with the facture id
-        $pdfFilepath =  $publicDirectory . '/facture_' . $facture->getId() . '.pdf';
-
-        // write file to the desired path
-        file_put_contents($pdfFilepath, $output);
-
-        // output the generated PDF to Browser (force download)
-        $dompdf->stream("mypdf.pdf", [
-            "Attachment" => false
-        ]);
+        $factureService->getPDF($id);
         exit;
     }
 }
