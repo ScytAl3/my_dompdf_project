@@ -1,24 +1,17 @@
 body {
-    background-color: floralwhite !important;
-    color: #312f31 !important;
-    /*-- pour demarrer sous la navbar fixe --*/
-    padding-top: 7em;
-}
-
-#page-container {
-    position: relative;
-    min-height: 100vh;
+  background-color: floralwhite !important;
+  color: #312f31 !important;
+  /*-- pour demarrer sous la navbar fixe --*/
+  padding-top: 7em;
 }
 
 #content-wrap {
-    /* Footer height */
-    padding-bottom: 2.5rem;
+  min-height: 700px;
 }
 
 #footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Footer height */
-    height: 2.5rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #efefef;
 }

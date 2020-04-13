@@ -2,12 +2,15 @@
 {{ form_start(form) }}
 
 <!-- debut des champs pour la saisie -->
-<div class="col-md-12 px-0">
+<div class="col-sm-8 mx-auto">
 
     <!-- numero identifiant du client -->
     <div class="mb-4">
         {{ form_label(form.client_id, 'N° identifiant du client') }}
         {{ form_widget(form.client_id, {'attr': {'class': 'form-control'}}) }}
+        {{ form_help(form.client_id, {
+            'help_attr': {'class': 'small text-muted font-italic'}
+        }) }}
     </div>
     <!-- /numero identifiant du client -->
 
@@ -15,6 +18,9 @@
     <div class="mb-4">
         {{ form_label(form.client_adresse_ip, 'Adresse IP du paiement') }}
         {{ form_widget(form.client_adresse_ip, {'attr': {'class': 'form-control'}}) }}
+        {{ form_help(form.client_adresse_ip, {
+            'help_attr': {'class': 'small text-muted font-italic'}
+        }) }}
     </div>
     <!-- /adresse IP du client -->
 
@@ -29,6 +35,9 @@
     <div class="mb-4">
         {{ form_label(form.montant_tva, 'Montant de la TVA') }}
         {{ form_widget(form.montant_tva, {'attr': {'class': 'form-control'}}) }}
+        {{ form_help(form.montant_tva, {
+            'help_attr': {'class': 'small text-muted font-italic'}
+        }) }}
     </div>
     <!-- /montant de la TVA -->
 
@@ -39,20 +48,11 @@
     </div>
     <!-- /date de la facture -->
 
+    <!-- bouton de validation du formulaire-->
+    <button class="btn btn-primary btn-block mb-5">{{ save_button | default('Save') }}</button>
+    <!-- /bouton de validation du formulaire-->
 </div>
 <!-- /debut des champs pour la saisie -->
 
-<!-- bouton de validation du formulaire-->
-<button class="btn btn-primary">{{ save_button | default('Save') }}</button>
-<!-- /bouton de validation du formulaire-->
-
 {{ form_end(form) }}
 <!-- /elements du formulaire -->
-
-<div class="d-flex">
-    <!-- bouton pour revenir a la page precedente -->
-    <div class="ml-auto">
-        <button class="btn btn-info" onclick="history.back(-1)">&laquo; {{ back_button | default('Back') }}</button>
-    </div>
-    <!-- /bouton pour revenir a la page precedente -->
-</div>

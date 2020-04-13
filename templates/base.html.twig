@@ -4,40 +4,37 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}">
         {% block stylesheets %}
         {# 'app' must match the first argument to addEntry() in webpack.config.js #}
         {{ encore_entry_link_tags('app') }}
-        
+
         <!-- Renders a link tag (if your module requires any CSS)
                             <link rel="stylesheet" href="/build/app.css"> -->
         {% endblock %}
     </head>
 
     <body>
-        <!-- conteneur fixe-->
-        <div id="page-container">
-            <!-- header area -->
-            {% block header %}
-            <header>
-                <!-- navbar area -->
-                {% include('include/header.html.twig') %}
-                <!-- /navbar area -->
-            </header>
-            {% endblock %}
-            <!-- /header area -->
+        <!-- header area -->
+        {% block header %}
+        <header>
+            <!-- navbar area -->
+            {% include('include/header.html.twig') %}
+            <!-- /navbar area -->
+        </header>
+        {% endblock %}
+        <!-- /header area -->
 
-            <!-- body area -->
-            {% block body %}
-            {% endblock %}
-            <!-- body area -->
+        <!-- body area -->
+        {% block body %}
+        {% endblock %}
+        <!-- body area -->
 
-            <!-- footer area -->
-            {% block footer %}
-            {% include('include/footer.html.twig') %}
-            {% endblock %}
-            <!-- ./footer area -->
-        </div>
-        <!-- conteneur fixe-->
+        <!-- footer area -->
+        {% block footer %}
+        {% include('include/footer.html.twig') %}
+        {% endblock %}
+        <!-- ./footer area -->
         {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FactureRepository")
@@ -18,11 +19,14 @@ class Facture
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\GreaterThan(0, message = "Un identifiant supérieur à {{ value }}.")
+     * @Assert\Regex(pattern="/^[0-9]{1,4}$/", message="Entre 1 et 4 chiffres.")
      */
     private $client_id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Ip(message = "Ce n'est pas une adresse IP valide.")
      */
     private $client_adresse_ip;
 
@@ -38,6 +42,8 @@ class Facture
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThanOrEqual("01/01/2020", message = "La date ne peut pas être inférieure à {{ compared_value }}!")
+     * @Assert\LessThanOrEqual("today", message = "La date ne peut pas être supérieure à aujourd'hui!")
      */
     private $facture_createAt;
 

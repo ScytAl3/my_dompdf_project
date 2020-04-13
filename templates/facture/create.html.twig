@@ -6,15 +6,23 @@
 {% block body %}
 
 <!-- conteneur de la page du formulaire de creation d une facture -->
-<div class="container mt-4" id="content-wrap">
+<div class="container mt-4">
     <!-- titre de la page de l affichage des factures -->
     <div class="py-5 text-center">
         <h1 class="display-4 font-weight-bold text-uppercase">{{ title }}</h1>
     </div>
     <!-- /titre de la page de l affichage des factures -->
+
+    <!-- bouton pour revenir a la page precedente -->
+    <div class="">
+        <a class="btn btn-info btn-sm" href="/">&laquo;
+            {{ back_button | default('Retour') }}</a>
+    </div>
+    <!-- /bouton pour revenir a la page precedente -->
+
     <br>
     <!-- include du template de formulaire -->
-    {{ include('facture/_form.html.twig', { form: form, save_button: 'Create', back_button: 'Return'}) }}
+    {{ include('facture/_form.html.twig', { form: form, save_button: 'Valider', back_button: 'Return'}) }}
     <!-- include du template de formulaire -->
 </div>
 <!-- /conteneur de la page du formulaire de creation d une facture -->
