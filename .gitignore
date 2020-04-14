@@ -1,20 +1,3 @@
-# Cache and logs (Symfony2)
-/app/cache/*
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
-
-# Email spool folder
-/app/spool/*
-
-# Cache, session files and logs (Symfony3)
-/var/cache/*
-/var/logs/*
-/var/sessions/*
-!var/cache/.gitkeep
-!var/logs/.gitkeep
-!var/sessions/.gitkeep
-
 # Logs (Symfony4)
 /var/log/*
 !var/log/.gitkeep
@@ -40,7 +23,7 @@
 /phpunit.xml
 
 # Build data
-/build/
+/public/build/
 
 # Composer PHAR
 /composer.phar
@@ -81,8 +64,9 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-# Cache (Current project)
+# Current project cache and public/uploads folder
 /var/data/*
+/public/uploads/*
 
 # vscode
 .vscode/sftp.json
