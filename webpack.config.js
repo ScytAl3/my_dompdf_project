@@ -11,9 +11,14 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
+    // public path used by the web server to access the output path
+    .setPublicPath('/build')
+    // only needed for CDN's or sub-directory deploy
+    //.setManifestKeyPrefix('build/')
+
     // copyFiles() method to copy images files into the final output directory
     .copyFiles({
-        from: './assets/images',        
+        from: './assets/images',
         // optional target path, relative to the output dir
         to: 'images/[path][name].[ext]',
 
@@ -23,10 +28,6 @@ Encore
         // only copy files matching this pattern
         //pattern: /\.(png|jpg|jpeg)$/
     })
-    // public path used by the web server to access the output path
-    .setPublicPath('/build')
-    // only needed for CDN's or sub-directory deploy
-    //.setManifestKeyPrefix('build/')
 
     /*
      * ENTRY CONFIG
@@ -84,6 +85,6 @@ Encore
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
-;
+    ;
 
 module.exports = Encore.getWebpackConfig();

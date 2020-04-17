@@ -1,3 +1,6 @@
+/* the ~ allows you to reference things in node_modules */
+@import "~bootstrap/dist/css/bootstrap.css";
+
 body {
   background-color: floralwhite !important;
   color: #312f31 !important;
