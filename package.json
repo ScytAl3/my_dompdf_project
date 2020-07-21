@@ -18,5 +18,8 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "lodash": "4.17.19"
     }
 }
