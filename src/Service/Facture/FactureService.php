@@ -18,6 +18,7 @@ class FactureService
     protected $factureRepository;
     protected $twig;
     protected $pdfDirectory;
+    protected $chrootDirectory;
 
     /**
      * methode d ajout de dependances a la methode __construct aka injection de dependance
@@ -25,12 +26,14 @@ class FactureService
      * @param FactureRepository le repository pour pouvoir appeller la methode find()
      * @param Environment   pour travailler avec un template twig
      * @param String    le chemin du dossier pour enregistrer les factures generees define in config/services.yaml
+     * @param String $chrootDirectory : le chemin vers le dossier chroot
      */
-    public function __construct(FactureRepository $factureRepository, Environment $twig, string $pdfDirectory)
+    public function __construct(FactureRepository $factureRepository, Environment $twig, string $pdfDirectory, string $chrootDirectory)
     {
         $this->factureRepository = $factureRepository;
         $this->twig = $twig;
         $this->pdfDirectory = $pdfDirectory;
+        $this->chrootDirectory = $chrootDirectory;
     }
 
     /**
@@ -46,6 +49,7 @@ class FactureService
         //
         // configure Dompdf according to the needs
         $pdfOptions = new Options();
+        $pdfOptions->set('chroot', $this->chrootDirectory);
         $pdfOptions->set('defaultFont', 'Arial');
         $pdfOptions->setIsHtml5ParserEnabled(true);
         $pdfOptions->setDpi(150);
@@ -76,7 +80,7 @@ class FactureService
         //  write the file in the public directory set in config/services.yaml
         $publicDirectory = $this->pdfDirectory;
         // concatenate the name with the facture id
-        $pdfFilepath =  $publicDirectory . '/facture_' . $facture->getId() . '.pdf';
+        $pdfFilepath =  $publicDirectory . 'facture_' . $facture->getId() . '.pdf';
 
         // write file to the desired path
         file_put_contents($pdfFilepath, $output);
