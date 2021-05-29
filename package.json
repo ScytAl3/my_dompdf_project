@@ -23,6 +23,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "dns-packet": "1.3.4",
         "hosted-git-info": "2.8.9",
         "is-svg": "4.2.2",
         "lodash": "4.17.21",
