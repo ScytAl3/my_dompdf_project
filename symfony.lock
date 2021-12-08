@@ -27,12 +27,12 @@
         "version": "v0.5.3"
     },
     "doctrine/doctrine-bundle": {
-        "version": "2.3",
+        "version": "2.5",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "2.3",
-            "ref": "c9e656a395646ea4fad2bd3e2b3816028baf9026"
+            "version": "2.4",
+            "ref": "032f52ed50a27762b78ca6a2aaf432958c473553"
         },
         "files": [
             "./config/packages/doctrine.yaml",
@@ -93,12 +93,6 @@
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
-    },
-    "laminas/laminas-eventmanager": {
-        "version": "3.2.1"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.0.2"
     },
     "monolog/monolog": {
         "version": "2.0.2"
@@ -213,9 +207,6 @@
         "files": [
             "./config/packages/dev/debug.yaml"
         ]
-    },
-    "symfony/debug-pack": {
-        "version": "v1.0.7"
     },
     "symfony/dependency-injection": {
         "version": "v5.0.7"
@@ -357,8 +348,8 @@
     "symfony/options-resolver": {
         "version": "v5.0.7"
     },
-    "symfony/orm-pack": {
-        "version": "v1.0.8"
+    "symfony/password-hasher": {
+        "version": "v5.4.0"
     },
     "symfony/phpunit-bridge": {
         "version": "5.1",
@@ -398,9 +389,6 @@
     },
     "symfony/process": {
         "version": "v5.0.7"
-    },
-    "symfony/profiler-pack": {
-        "version": "v1.0.4"
     },
     "symfony/property-access": {
         "version": "v5.0.7"
@@ -452,9 +440,6 @@
     "symfony/serializer": {
         "version": "v5.0.7"
     },
-    "symfony/serializer-pack": {
-        "version": "v1.0.3"
-    },
     "symfony/service-contracts": {
         "version": "v2.0.1"
     },
@@ -463,9 +448,6 @@
     },
     "symfony/string": {
         "version": "v5.0.7"
-    },
-    "symfony/test-pack": {
-        "version": "v1.0.6"
     },
     "symfony/translation": {
         "version": "3.3",
@@ -499,9 +481,6 @@
             "./config/packages/twig.yaml",
             "./templates/base.html.twig"
         ]
-    },
-    "symfony/twig-pack": {
-        "version": "v1.0.0"
     },
     "symfony/validator": {
         "version": "4.3",
