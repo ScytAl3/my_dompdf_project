@@ -6,7 +6,7 @@
             CSS for the DomPDF layout
 ----------------------------------------------*/
 
-/*----------- main components --------*/
+/*----------- main components -----------*/
 html,
 body {
     height: 100%;
@@ -14,11 +14,171 @@ body {
     padding-top: 0%;
 }
 
+body {
+    background-color: floralwhite;
+}
+
 p {
     font-size: x-small !important;
 }
 
-/*----------- table components --------*/
+/*----------- text -----------*/
+.center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.textBold {
+    font-weight: 700;
+}
+
+.textToUpper {
+    text-transform: uppercase;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.text-success {
+    color: #28a745;
+}
+
+.font-weight-bold {
+    font-weight: 800;
+}
+
+/*----------- alignement -----------*/
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+/*----------- espacement -----------*/
+.p-0 {
+    padding: 0;
+}
+
+.p-1 {
+    padding: 0.25rem;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.pr-0,
+.px-0 {
+    padding-right: 0;
+}
+
+.pb-1,
+.py-1 {
+    padding-bottom: 0.25rem;
+}
+
+.pl-2,
+.px-2 {
+    padding-left: 0.5rem;
+}
+
+.pr-2,
+.px-2 {
+    padding-right: 0.5rem;
+}
+
+.pt-2,
+.py-2 {
+    padding-top: 0.5rem;
+}
+
+.pb-2,
+.py-2 {
+    padding-bottom: 0.5rem;
+}
+
+.mr-0,
+.mx-0 {
+    margin-right: 0;
+}
+
+.ml-0,
+.mx-0 {
+    margin-left: 0;
+}
+
+.mb-0,
+.my-0 {
+    margin-bottom: 0;
+}
+
+.mt-0,
+.my-0 {
+    margin-top: 0;
+}
+
+.mt-2,
+.my-2 {
+    margin-top: 0.5rem;
+}
+
+.mt-auto,
+.my-auto {
+    margin-top: auto;
+}
+
+.mr-auto,
+.mx-auto {
+    margin-right: auto;
+}
+
+.mb-auto,
+.my-auto {
+    margin-bottom: auto;
+}
+
+.ml-auto,
+.mx-auto {
+    margin-left: auto;
+}
+
+.mb-4,
+.my-4 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-5,
+.my-5 {
+    margin-bottom: 3rem;
+}
+
+/*----------- table components -----------*/
 
 table {
     width: 100%;
@@ -36,4 +196,49 @@ td {
 
 .tfoot-border-bottom {
     border-bottom: 1px solid #fff
+}
+
+.td-border-dark {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.td-bg-dark {
+    background-color:black;
+    border-radius: 5px;
+    color: white;
+}
+
+.td-border-blue {
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+
+.td-bg-blue {
+    background-color: blue;
+    border-radius: 5px;
+    color: white;
+}
+
+.td-bg-red {
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+}
+
+.interline p {
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+}
+
+.table-striped tbody tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+.table-warning {
+    background-color: #FFFACD;
+}
+
+.tfoot-border-bottom {
+    border-bottom: 1px solid black;
 }

@@ -3,36 +3,43 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Facture PDF!{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Franck Jakubowski">
+        <meta name="description" content="Affichage d'une facture au format PDF">
+
+        <title>
+            {% block title %}
+            Facture n°{{ facture.id }}
+            {% endblock %}
+        </title>
+
         {% block stylesheets %}
-        {# href="{{ absolute_url(asset('build/app.css'))[1:] }}" #}
-        <link rel="stylesheet" href="{{ asset('build/app.css')[1:] }}">
         <link rel="stylesheet" href="{{ asset('build/pdf.css')[1:] }}">
         {% endblock %}
     </head>
 
-    <body id="body-pdf">
+    <body>
         {% block body %}
 
         {# layout for PDF files #}
         <!-- global container -->
-        <div class="px-3">
+        <div class="px-2">
 
-            <!-- header with logo only -->
+            <!-- header with logo & title -->
             <header>
-                <div class="py-0 text-center">
+                <div class="center">
                     {# uncomment the line ;extension=gd2 in the php.in file #}
                     <img class="" src="{{ asset('build/images/logo.png')[1:] }}" height="100"
-                        alt="Aucune Commission Logo">
+                         alt="Aucune Commission Logo">
+                    <!-- titre de la page du pdf -->
+                    <div class="my-5 center">
+                        <h1 class="textBold textToUpper">{{ title }}</h1>
+                    </div>
                 </div>
             </header>
-            <!-- /header with logo only -->
+            <!-- /header with logo & title -->
 
-            <!-- titre de la page du pdf -->
-            <div class="my-5 text-center">
-                <h1 class="font-weight-bold text-uppercase">{{ title }}</h1>
-            </div>
-            <!-- /titre de la page du pdf -->
 
             <!-- informations et reference de la commande -->
             <table class="mb-5">
@@ -41,15 +48,17 @@
                         <td></td>
                         <!-- informations & references de la facture -->
                         <td class="td-vertical-align" width="40%">
-                            <div class="border border-dark rounded">
-                                <div class="bg-dark text-white rounded px-1 font-weight-bold">Informations commande
+                            <div class="td-border-dark">
+                                <div class="td-bg-dark rounded p-2 font-weight-bold">
+                                    Informations commande
                                 </div>
-                                <div class="text-dark">
-                                    <p class="px-1 my-0">Numéro de facture: {{ facture.id }}</p>
-                                    <p class="px-1 my-0">Numéro client: {{ facture.clientid }}</p>
-                                    <p class="px-1 my-0">Adresse IP du paiement: {{ facture.clientAdresseIp }}</p>
-                                    <p class="px-1 my-0">Date de la facture:
-                                        {{ facture.factureCreateAt | date('d:m:Y') }}</p>
+                                <div class="interline pb-2 px-2">
+                                    <p>Numéro de facture: {{ facture.id }}</p>
+                                    <p>Numéro client: {{ facture.clientid }}</p>
+                                    <p>Adresse IP du paiement: {{ facture.clientAdresseIp }}</p>
+                                    <p>Date de la facture:
+                                        {{ facture.factureCreateAt | date('d:m:Y') }}
+                                    </p>
                                 </div>
                             </div>
                         </td>
@@ -65,12 +74,12 @@
                     <tr>
                         <!-- adresse de livraison -->
                         <td class="td-vertical-align">
-                            <div class="border border-info rounded">
-                                <div class="bg-primary text-white rounded px-1 font-weight-bold">Client livré</div>
-                                <div class="text-dark">
-                                    <p class="px-1 my-0">Prénom Nom du client</p>
-                                    <p class="px-1 my-0">Adresse du client</p>
-                                    <p class="px-1 my-0">Code postal et ville du client</p>
+                            <div class="td-border-blue">
+                                <div class="td-bg-blue p-2 font-weight-bold">Client livré</div>
+                                <div class="interline pb-2 px-2">
+                                    <p>Prénom Nom du client</p>
+                                    <p>Adresse du client</p>
+                                    <p>Code postal et ville du client</p>
                                 </div>
                             </div>
                         </td>
@@ -80,12 +89,12 @@
 
                         <!-- adresse de facturation -->
                         <td class="td-vertical-align">
-                            <div class="border border-info rounded">
-                                <div class="bg-primary text-white rounded px-1 font-weight-bold">Client facturé</div>
-                                <div class="text-dark">
-                                    <p class="px-1 my-0">Prénom Nom du client</p>
-                                    <p class="px-1 my-0">Adresse du client</p>
-                                    <p class="px-1 my-0">Code postal et ville du client</p>
+                            <div class="td-border-blue">
+                                <div class="td-bg-blue p-2 font-weight-bold">Client facturé</div>
+                                <div class="interline pb-2 px-2">
+                                    <p>Prénom Nom du client</p>
+                                    <p>Adresse du client</p>
+                                    <p>Code postal et ville du client</p>
                                 </div>
                             </div>
                         </td>
@@ -105,21 +114,24 @@
                         <tr>
                             <!-- description de la commande -->
                             <th class="td-vertical-align" width="80%">
-                                <div class="bg-danger text-white rounded p-1 font-weight-bold">Description</div>
+                                <div class="td-bg-red p-2 font-weight-bold">
+                                    Description
+                                </div>
                             </th>
                             <!-- /description de la commande -->
 
                             <!-- montant de la facture -->
                             <th class="td-vertical-align text-right" width="20%">
-                                <div class="bg-dark text-white rounded p-1 font-weight-bold">
-                                    {{ ((1 + facture.montantTva) * facture.montantHt) | number_format(2) }} €</div>
+                                <div class="td-bg-dark p-2 font-weight-bold">
+                                    {{ ((1 + facture.montantTva) * facture.montantHt) | number_format(2) }} €
+                                </div>
                             </th>
                             <!-- /montant de la facture -->
                         </tr>
                         <!-- /ligne de l entete du tableau -->
                     </thead>
 
-                    <!-- ligne de concernant 1 article -->
+                    <!-- ligne concernant 1 article -->
                     {# si plusieurs articles boucle pour pour remplir la table #}
                     <tr>
                         <td class="td-vertical-align">
@@ -183,7 +195,7 @@
                         <td class="text-right">
                             <em>Moyens de paiement</em>
                         </td>
-                        <td class="text-center table-warning">
+                        <td class="center table-warning">
                             <em>Comptant</em>
                         </td>
                     </tr>
@@ -198,14 +210,15 @@
                     <tr>
                         <!-- contact & horaires -->
                         <td class="td-vertical-align" width="40%">
-                            <div class="border border-dark rounded">
-                                <div class="bg-dark text-white rounded px-1 font-weight-bold">Contact
+                            <div class="td-border-dark">
+                                <div class="td-bg-dark p-2 font-weight-bold">
+                                    Contact
                                 </div>
-                                <div class="text-center">
-                                    <p class="px-1 my-0"><a href="https://google.fr">Sevice client</a></p>
-                                    <p class="px-1 my-0">Du lundi au vendredi de 10h à 15h</p>
-                                    <p class="px-1 my-0"><strong>09 75 18 04 34</strong></p>
-                                    <p class="px-1 my-0">info@aucunecommission.com</p>
+                                <div class="center interline pb-2 px-2">
+                                    <p><a href="https://google.fr">Sevice client</a></p>
+                                    <p>Du lundi au vendredi de 10h à 15h</p>
+                                    <p><strong>09 75 18 04 34</strong></p>
+                                    <p>info@aucunecommission.com</p>
                                 </div>
                             </div>
                         </td>
